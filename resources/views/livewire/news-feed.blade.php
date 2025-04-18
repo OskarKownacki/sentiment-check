@@ -1,4 +1,5 @@
 <div class="container-fluid g-2">
+  @if( !$error )
     <div class="row p-5 g-2">
     @foreach($articles as $index => $article)
     <div class="col-md-4  mb-2">
@@ -30,4 +31,7 @@
       </div>
     @endif
     </div>
+  @else
+    <p>An error ocurred: {{ $error }} </p>
+  @endif
 </div>
