@@ -1,5 +1,15 @@
-<div class="container-fluid g-2">
+<div >
   @if( !$error )
+    <div class="w-100 container-fluid g-2 d-flex align-items-center justify-content-end mt-2">
+      <div style="width: 15%">
+      <form wire:submit="fetchArticles" class="w-15">
+        <div class="input-group mb-3">
+        <input type="search" wire:model="search" class="form-control" placeholder="Search...">
+        <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+      </div>
+    </div>
     <div class="row p-5 g-2">
     @foreach($articles as $index => $article)
     <div class="col-md-4  mb-2">
