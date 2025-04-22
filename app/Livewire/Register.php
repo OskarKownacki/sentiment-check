@@ -21,18 +21,17 @@ class Register extends Component
     public function register()
     {
         $this->validate();
-        dd($this->username);
-        
+
         $user = User::create([
-            'email'=> $this->email,
-            'password'=> $this->password,
-            'name'=> $this->username,
-            
+            'email' => $this->email,
+            'password' => $this->password,
+            'name' => $this->username,
+
         ]);
 
         Auth::login($user);
-        
-        return redirect()->route('home');   
+
+        return redirect()->route('home');
     }
     public function render()
     {

@@ -29,8 +29,8 @@ class NewsFeedTest extends TestCase
             ])
         ]);
         Livewire::test(NewsFeed::class)
-            ->set('search','Test value')
-            ->call('fetchArticles')        
+            ->set('search', 'Test value')
+            ->call('fetchArticles')
             ->call('openFullscreen', 0)
             ->assertSet('fullscreen', true)
             ->assertSet('selectedArticle.title', 'Test Article 1');
@@ -46,17 +46,18 @@ class NewsFeedTest extends TestCase
         ]);
 
         Livewire::test(NewsFeed::class)
-            ->set('search','Test value')
+            ->set('search', 'Test value')
             ->call('fetchArticles')
             ->assertSet('error', 'Invalid API key')
             ->assertSet('articles', [])
             ->assertSee('Invalid API key');
     }
 
-    public function test_it_sanitizes_input(){
+    public function test_it_sanitizes_input()
+    {
         Livewire::test(NewsFeed::class)
-        ->set('search','Test value')
-        ->call('fetchArticles')
-        ->assertSet('searchSanitized','Test+value');
+            ->set('search', 'Test value')
+            ->call('fetchArticles')
+            ->assertSet('searchSanitized', 'Test+value');
     }
 }

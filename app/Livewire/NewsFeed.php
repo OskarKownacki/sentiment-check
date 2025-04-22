@@ -15,7 +15,7 @@ class NewsFeed extends Component
     public $selectedArticle = null;
     public $error = null;
     #[Validate('string')]
-    public $search; 
+    public $search;
     public $searchSanitized;
 
     public function boot()
@@ -26,9 +26,9 @@ class NewsFeed extends Component
     public function fetchArticles()
     {
         $this->validate();
-        $this->searchSanitized = str_replace(' ','+',$this->search);
+        $this->searchSanitized = str_replace(' ', '+', $this->search);
         $apikey = $_ENV["NEWSAPI_KEY"];
-        $response = Http::get('https://newsapi.org/v2/everything?q='. $this->searchSanitized .'&language=en&apiKey=' . $apikey);
+        $response = Http::get('https://newsapi.org/v2/everything?q=' . $this->searchSanitized . '&language=en&apiKey=' . $apikey);
         try {
             if ($response->successful()) {
                 $this->articles = $response->object()->articles;

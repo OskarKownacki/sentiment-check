@@ -10,7 +10,13 @@ class Navbar extends Component
 
     public function render()
     {
-        $username = Auth::user()->name;
-        return view('livewire.navbar', ['username' => $username]);
+        if (isset(Auth::user()->name)) {
+            $username = Auth::user()->name;
+            return view('livewire.navbar', ['username' => $username]);
+        }
+        else{
+            return view('livewire.navbar');
+        }
+        
     }
 }

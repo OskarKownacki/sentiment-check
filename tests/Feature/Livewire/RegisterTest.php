@@ -16,14 +16,15 @@ class RegisterTest extends TestCase
             ->assertStatus(200);
     }
 
-    public function test_it_validates(){
+    public function test_it_validates()
+    {
         Livewire::test(Register::class)
-        ->set('email','notAnEmail')
-        ->set('password','pass')
-        ->set('username','aVeryLongNameThatsWellAbove20Characters')
-        ->call('register')
-        ->assertHasErrors('email')
-        ->assertHasErrors('password')
-        ->assertHasErrors('username');
+            ->set('email', 'notAnEmail')
+            ->set('password', 'pass')
+            ->set('username', 'aVeryLongNameThatsWellAbove20Characters')
+            ->call('register')
+            ->assertHasErrors('email')
+            ->assertHasErrors('password')
+            ->assertHasErrors('username');
     }
 }
