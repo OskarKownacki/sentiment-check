@@ -11,7 +11,7 @@
           </li>
         </ul>
         @if(isset($username))
-        <span class="text-white mx-2 align-middle">Hello, {{$username}}</span>
+        <a class="link-offset-2 text-white mx-2 align-middle link-underline-opacity-0" href="/dashboard">Hello, {{$username}}</a>
         @else
         <a class="d-flex p-2 btn btn-primary mx-2" href="/login">Login</a>
         <a class="d-flex p-2 btn btn-secondary" href="/register">Register</a>
