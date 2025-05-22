@@ -11,8 +11,11 @@ class NewsService
     protected $articles;
     public $error;
 
+    public function __construct($api){
+        $this->apiKey = $api;
+    }
+
     public function fetchNews(string $query){
-        $this->apiKey = config('services.NewsAPI.key');
         $response = Http::get('https://newsapi.org/v2/everything?q=' . $query . '&language=en&apiKey=' . $this->apiKey);
         try {
             if ($response->successful()) {
