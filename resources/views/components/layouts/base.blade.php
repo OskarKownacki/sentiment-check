@@ -14,9 +14,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
         <!-- fontawesome --> 
         <script src="https://kit.fontawesome.com/a592af1597.js" crossorigin="anonymous"></script>
+        <!-- icons -->
     </head>
     <body>
         @livewire('navbar')
         {{ $slot }}
+        
     </body>
 </html>

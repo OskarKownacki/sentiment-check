@@ -1,4 +1,5 @@
 <div>
+  
   @if(!$error)
     <div class="w-100 container-fluid g-2 d-flex align-items-center justify-content-end mt-2">
     <div style="width: 15%">
@@ -23,6 +24,15 @@
       <div class="card h-100 border border-dark p-3 bg-dark text-white">
       <h3 role="button" wire:click="openFullscreen({{$index}})">{{$article->title}}</h3>
       <p class="mb-0">{{ $article->description }}</p>
+      @if(Auth::check())
+      <button wire:click="savePost({{ $index }})">
+        @if(in_array($index, $saved))
+        <i class="fa-solid fa-star"  wire:cloak></i>
+        @else
+        <i class="fa-regular fa-star" wire:cloak></i>
+        @endif
+    </button>
+      @endif
       </div>
     </div>
   @endforeach
@@ -52,3 +62,4 @@
     <p>An error ocurred: {{ $error }} </p>
   @endif
 </div>
+
