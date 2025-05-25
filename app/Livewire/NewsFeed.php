@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Jobs\ProcessSavingNews;
+use App\Jobs\ProcessUnsavingNews;
 use App\Models\Post;
 use Auth;
 use Illuminate\Support\Facades\Http;
@@ -59,11 +61,11 @@ class NewsFeed extends Component
         $post = new Post;
         if(!in_array($id, $this->saved)){
         $postCollection = collect($this->articles[$id]);
-        $post->savePost($postCollection);
+        ProcessSavingNews::dispatch($postCollection, Auth::id());
         $this->saved[] = $id;
         }
         else{
-            $post->unsavePost($this->articles[$id]->title);
+            ProcessUnsavingNews::dispatch($this->articles[$id]->title, Auth::id());
             $this->saved = array_diff($this->saved, [$id]);
         }
     }

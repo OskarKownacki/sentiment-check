@@ -16,18 +16,18 @@ class Post extends Model
         'content'
     ];
 
-    public function savePost(Collection $postCollection){
+    public function savePost(Collection $postCollection, $userId){
         $post = new Post;
         $post->title = $postCollection["title"];
         $post->link_to_image = $postCollection["urlToImage"];
         $post->link_to_article = $postCollection["url"];
         $post->content = $postCollection["content"];
-        $post->user_id = Auth::id();
+        $post->user_id = $userId;
         $post->save();
     }
 
-    public function unsavePost($title){
-        Post::where('user_id', '=', Auth::id())->where('title','=',$title)->delete();
+    public function unsavePost($title, $userId){
+        Post::where('user_id', '=', $userId)->where('title','=',$title)->delete();
 
     }
 

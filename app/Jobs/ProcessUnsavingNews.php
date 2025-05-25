@@ -8,21 +8,21 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Collection;
 
-class ProcessSavingNews implements ShouldQueue
+class ProcessUnsavingNews implements ShouldQueue
 {
     use Queueable, Dispatchable, InteractsWithQueue, SerializesModels;
 
-    protected $data;
+    protected $title;
     protected $userId;
+
     /**
      * Create a new job instance.
      */
-    public function __construct(Collection $data, $userId)
+    public function __construct($title, $userId)
     {
+        $this->title = $title;
         $this->userId = $userId;
-        $this->data = $data;
     }
 
     /**
@@ -30,10 +30,6 @@ class ProcessSavingNews implements ShouldQueue
      */
     public function handle(Post $post): void
     {
-        $post->savePost($this->data, $this->userId);
-    }
-
-    public function failed(\Throwable $exception){
-        dd($exception);
+        $post->unsavePost($this->title, $this->userId);
     }
 }

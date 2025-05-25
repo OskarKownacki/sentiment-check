@@ -21,19 +21,21 @@
   @endif
     @foreach($articles as $index => $article)
     <div class="col-md-4  mb-2">
-      <div class="card h-100 border border-dark p-3 bg-dark text-white">
-      <h3 role="button" wire:click="openFullscreen({{$index}})">{{$article->title}}</h3>
-      <p class="mb-0">{{ $article->description }}</p>
-      @if(Auth::check())
-      <button wire:click="savePost({{ $index }})">
-        @if(in_array($index, $saved))
-        <i class="fa-solid fa-star"  wire:cloak></i>
-        @else
-        <i class="fa-regular fa-star" wire:cloak></i>
-        @endif
-    </button>
-      @endif
-      </div>
+      <div class="card h-100 border border-dark p-3 pb-4 bg-dark text-white position-relative">
+  <h3 role="button" wire:click="openFullscreen({{$index}})">{{$article->title}}</h3>
+  <p class="mb-0">{{ $article->description }}</p>
+  @if(Auth::check())
+  <button wire:click="savePost({{ $index }})" 
+          class="btn p-0 position-absolute" 
+          style="bottom: 1rem; right: 1rem; color: white; height: 2rem; width: 2rem;">
+    @if(in_array($index, $saved))
+      <i class="fa-solid fa-star" wire:cloak></i>
+    @else
+      <i class="fa-regular fa-star" wire:cloak></i>
+    @endif
+  </button>
+  @endif
+</div>
     </div>
   @endforeach
 
