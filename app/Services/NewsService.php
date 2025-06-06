@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App;
 use Http;
 
 
@@ -39,6 +40,19 @@ class NewsService
             default => 'Failed to load news feed'
         };
         $this->articles = [];
+    }
+    public function fetchTopNews(){
+        $response = Http::get('https://newsapi.org/v2/top-headlines?&country=us&apiKey=' . $this->apiKey);
+        try{
+            if ($response->successful()) {
+                $this->articles = $response->object()->articles;
+            } else {
+                $this->handleApiError($response->status());
+            }
+        } catch (\Exception $e){
+            $this->handleApiError($e->getMessage());
+        }
+        return $this->articles;
     }
 }
 

@@ -6,7 +6,6 @@ use App\Jobs\ProcessSavingNews;
 use App\Jobs\ProcessUnsavingNews;
 use App\Models\Post;
 use Auth;
-use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
