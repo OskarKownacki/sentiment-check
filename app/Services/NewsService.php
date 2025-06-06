@@ -42,7 +42,7 @@ class NewsService
         $this->articles = [];
     }
     public function fetchTopNews(){
-        $response = Http::get('https://newsapi.org/v2/top-headlines?&country=us&apiKey=' . $this->apiKey);
+        $response = Http::get('https://newsapi.org/v2/top-headlines?country=us&apiKey=' . $this->apiKey);
         try{
             if ($response->successful()) {
                 $this->articles = $response->object()->articles;

@@ -11,8 +11,24 @@
       </form>
     </div>
     </div>
+    
     <div class="row w-100 p-5 g-2">
+      
     @if(!$search)
+    <div class="row justify-content-center">
+    @foreach($articlesTop as $articleTop)
+        <div class="card m-2" style="width: 15%">
+          <a href={{ $articleTop->url }}> <img src={{ $articleTop->urlToImage }} class="card-img-top" alt={{ $articleTop->description }}> </a>
+          <div class="card-body">
+            <p class="card-text"> {{ $articleTop->title }}
+          </div>
+        </div>
+      @if($loop->iteration == 10)
+        @break
+      @endif
+      @endforeach
+      </div>
+    <div>
     <div class="container-fluid g-2 d-flex align-items-center justify-content-center mt-2 alert alert-primary"
       role="alert" style="width: 30vw">
       <p class="fs-1"> Search for something!</p>
@@ -25,7 +41,7 @@
   <h3 role="button" wire:click="openFullscreen({{$index}})">{{$article->title}}</h3>
   <p class="mb-0">{{ $article->description }}</p>
   @if(Auth::check())
-  <button wire:click="savePost({{ $index }})" 
+  <button wire:click="saveNews({{ $index }})" 
           class="btn p-0 position-absolute" 
           style="bottom: 1rem; right: 1rem; color: white; height: 2rem; width: 2rem;">
     @if(in_array($index, $saved))

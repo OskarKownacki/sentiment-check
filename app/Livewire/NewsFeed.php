@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Jobs\ProcessSavingNews;
 use App\Jobs\ProcessUnsavingNews;
-use App\Models\Post;
+use App\Models\News;
 use Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -22,12 +22,15 @@ class NewsFeed extends Component
     public $search;
     public $searchSanitized;
     public $saved = [];
+    public $articlesTop = [];
 
 
-    public function mount()
+
+    public function mount(NewsService $newsService)
     {
-   
+        $this->articlesTop = $newsService->fetchTopNews();
     }
+
 
     public function fetchArticles(NewsService $newsService)
     {
@@ -35,7 +38,7 @@ class NewsFeed extends Component
         $this->validate();
         $this->searchSanitized = str_replace(' ', '+', $this->search);
         $this->articles = $newsService->fetchNews($this->searchSanitized);
-        $posts = Post::where('user_id', '=', Auth::id())->get()->toArray();
+        $posts = News::where('user_id', '=', Auth::id())->get()->toArray();
         foreach($this->articles as $index => $article){
             foreach($posts as $post){
                 if($article->title == $post["title"]){
@@ -48,6 +51,7 @@ class NewsFeed extends Component
     }
     public function openFullscreen($index)
     {
+
         $this->selectedArticle = $this->articles[$index];
         $this->fullscreen = true;
     }
@@ -56,11 +60,11 @@ class NewsFeed extends Component
         $this->selectedArticle = null;
         $this->fullscreen = false;
     }
-    public function savePost($id){
-        $post = new Post;
+    public function saveNews($id){
+        $news = new News;
         if(!in_array($id, $this->saved)){
-        $postCollection = collect($this->articles[$id]);
-        ProcessSavingNews::dispatch($postCollection, Auth::id());
+        $newsCollection = collect($this->articles[$id]);
+        ProcessSavingNews::dispatch($newsCollection, Auth::id());
         $this->saved[] = $id;
         }
         else{

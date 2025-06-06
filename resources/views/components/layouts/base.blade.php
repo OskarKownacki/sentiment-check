@@ -15,6 +15,8 @@
         <!-- fontawesome --> 
         <script src="https://kit.fontawesome.com/a592af1597.js" crossorigin="anonymous"></script>
         <!-- icons -->
+        @livewireStyles
+        @livewireScripts
     </head>
     <body>
         @livewire('navbar')

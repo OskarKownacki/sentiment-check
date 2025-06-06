@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Post;
+use App\Models\News;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
@@ -28,8 +28,8 @@ class ProcessUnsavingNews implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(Post $post): void
+    public function handle(News $news): void
     {
-        $post->unsavePost($this->title, $this->userId);
+        $news->unsaveNews($this->title, $this->userId);
     }
 }
