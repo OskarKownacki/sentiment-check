@@ -94,9 +94,9 @@ class NewsFeedTest extends TestCase
             ->test(NewsFeed::class)
             ->set('search', 'Test value')
             ->call('fetchArticles')
-            ->call('savePost',0);
+            ->call('saveNews',0);
 
-        $this->assertDatabaseHas('posts', [
+        $this->assertDatabaseHas('news', [
             'title' => 'Test Article 1',
             'link_to_image' => 'testUrlImage1',
             'content' => 'testContent1',
@@ -118,9 +118,21 @@ class NewsFeedTest extends TestCase
             ->test(NewsFeed::class)
             ->set('search', 'Test value')
             ->call('fetchArticles')
-            ->call('savePost',0)
+            ->call('saveNews',0)
             ->assertSet('saved',[0]);
     }
 
+    public function test_it_generates_top_articles(){
+         Http::fake([
+            'newsapi.org/v2/top-headlines*' => Http::response([
+                'articles' => [
+                    ['title' => 'Test Article 1', 'description' => 'Description 1', 'urlToImage' => 'testUrlImage1', 'url' => 'testUrl1', 'content' => 'testContent1'],
+                    ['title' => 'Test Article 2', 'description' => 'Description 2', 'urlToImage' => 'testUrlImage2', 'url' => 'testUrl2', 'content' => 'testContent2'],
+                ]
+            ])
+        ]);
+        Livewire::test(NewsFeed::class)
+            ->assertSee('Test Article 1');
+    }
 
 }
