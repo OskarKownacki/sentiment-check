@@ -1,4 +1,4 @@
-<div class="container-flex card">
+<div class="container-flex card m-5">
     <div class="card-header fs-1">
         Dashboard
     </div>

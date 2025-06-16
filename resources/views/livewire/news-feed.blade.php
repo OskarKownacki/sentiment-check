@@ -1,4 +1,4 @@
-<div>
+<div class="container-flex">
 
     @if (!$error)
         <div class="w-100 container-fluid g-2 d-flex align-items-center justify-content-end mt-2">
