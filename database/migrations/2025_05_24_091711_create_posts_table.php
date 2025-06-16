@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('title');
+            $table->string('author');
             $table->string('link_to_image');
+            $table->text('description');
             $table->text('content');
             $table->string('link_to_article');
             $table->timestamps();

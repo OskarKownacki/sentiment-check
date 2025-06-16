@@ -19,8 +19,10 @@ class News extends Model
     public function saveNews(Collection $newsCollection, $userId){
         $news = new News;
         $news->title = $newsCollection["title"];
+        $news->author = $newsCollection["author"];
         $news->link_to_image = $newsCollection["urlToImage"];
         $news->link_to_article = $newsCollection["url"];
+        $news->description = $newsCollection["description"];
         $news->content = $newsCollection["content"];
         $news->user_id = $userId;
         $news->save();
