@@ -81,7 +81,7 @@ class NewsFeedTest extends TestCase
          Http::fake([
             'newsapi.org/v2/everything*' => Http::response([
                 'articles' => [
-                    ['title' => 'Test Article 1', 'description' => 'Description 1', 'urlToImage' => 'testUrlImage1', 'url' => 'testUrl1', 'content' => 'testContent1'],
+                    ['title' => 'Test Article 1', 'description' => 'Description 1', 'urlToImage' => 'testUrlImage1', 'url' => 'testUrl1', 'content' => 'testContent1', 'author' => 'test author'],
                     ['title' => 'Test Article 2', 'description' => 'Description 2', 'urlToImage' => 'testUrlImage2', 'url' => 'testUrl2', 'content' => 'testContent2'],
                 ]
             ])
@@ -101,7 +101,9 @@ class NewsFeedTest extends TestCase
             'link_to_image' => 'testUrlImage1',
             'content' => 'testContent1',
             'link_to_article' => 'testUrl1',
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'author' => 'test author',
+            'description' => 'Description 1'
         ]);
     }
     public function test_it_removes_index_from_saved_array(){

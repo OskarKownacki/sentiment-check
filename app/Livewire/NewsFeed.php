@@ -51,6 +51,7 @@ class NewsFeed extends Component
     }
     public function openFullscreen($index)
     {
+        
         $this->selectedArticle = $this->articles[$index];
         $this->fullscreen = true;
     }

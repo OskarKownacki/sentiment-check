@@ -6,6 +6,7 @@
         <button wire:click="logout" class="btn btn-primary"> Logout
         </button>
         <h2 class="my-2">Saved articles</h2>
+        @if($articles)
         <div class="row justify-content-center my-2">
             @foreach ($articles as $index => $article)
                 <div class="col-md-4  mb-2">
@@ -44,6 +45,7 @@
                 </div>
             @endif
         </div>
+        @endif
         <div>
         </div>
     </div>
